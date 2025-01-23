@@ -3,7 +3,7 @@
 
 <head>
   <title>
-  Graph and Hash Table Based Song/Artist Database · Brian&#39;s Blog
+  Tree-Based Seminar Database · Brian&#39;s Blog
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,30 +13,30 @@
 
 
 <meta name="author" content="Guann-Luen (Brian) Chen">
-<meta name="description" content="A graph and hash table based database implemented from scratch">
+<meta name="description" content="A Tree-based (BSTs and a 2D spatial tree) database implemented from scratch">
 <meta name="keywords" content="blog, developer, personal">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Graph and Hash Table Based Song/Artist Database">
-  <meta name="twitter:description" content="A graph and hash table based database implemented from scratch">
+  <meta name="twitter:title" content="Tree-Based Seminar Database">
+  <meta name="twitter:description" content="A Tree-based (BSTs and a 2D spatial tree) database implemented from scratch">
 
-<meta property="og:url" content="https://css186.github.io/projects/graph-hashtable-db/">
+<meta property="og:url" content="https://css186.github.io/projects/tree-db/">
   <meta property="og:site_name" content="Brian&#39;s Blog">
-  <meta property="og:title" content="Graph and Hash Table Based Song/Artist Database">
-  <meta property="og:description" content="A graph and hash table based database implemented from scratch">
+  <meta property="og:title" content="Tree-Based Seminar Database">
+  <meta property="og:description" content="A Tree-based (BSTs and a 2D spatial tree) database implemented from scratch">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="projects">
-    <meta property="article:published_time" content="2024-09-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-09-19T00:00:00+00:00">
+    <meta property="article:published_time" content="2024-10-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-10-19T00:00:00+00:00">
     <meta property="article:tag" content="Java">
     <meta property="article:tag" content="Data Structures">
     <meta property="article:tag" content="Algorithms">
-    <meta property="article:tag" content="Hash Table">
-    <meta property="article:tag" content="Graph">
-      <meta property="og:see_also" content="https://css186.github.io/projects/tree-db/">
+    <meta property="article:tag" content="Binary Search Tree">
+    <meta property="article:tag" content="Spatial Tree">
+      <meta property="og:see_also" content="https://css186.github.io/projects/graph-hashtable-db/">
 
 
 
@@ -51,7 +51,7 @@
 </script>
 
 
-<link rel="canonical" href="https://css186.github.io/projects/graph-hashtable-db/">
+<link rel="canonical" href="https://css186.github.io/projects/tree-db/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -158,8 +158,8 @@
       <header>
         <div class="project-title">
           <h1 class="title">
-            <a class="title-link" href="https://css186.github.io/projects/graph-hashtable-db/">
-              Graph and Hash Table Based Song/Artist Database
+            <a class="title-link" href="https://css186.github.io/projects/tree-db/">
+              Tree-Based Seminar Database
             </a>
           </h1>
         </div>
@@ -167,8 +167,8 @@
           <div class="date">
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="2024-09-19T00:00:00Z">
-                2024-09-19
+              <time datetime="2024-10-19T00:00:00Z">
+                2024-10-19
               </time>
             </span>
             <span class="reading-time">
@@ -201,11 +201,11 @@
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/hash-table/">Hash Table</a>
+      <a href="/tags/binary-search-tree/">Binary Search Tree</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/graph/">Graph</a>
+      <a href="/tags/spatial-tree/">Spatial Tree</a>
     </span></div>
 
         </div>
@@ -213,15 +213,15 @@
 
       <div class="project-content">
         
-        <p>Link: <a href="https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database"  class="external-link" target="_blank" rel="noopener">https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database</a></p>
-<h3 id="project-description">
-  Project Description
-  <a class="heading-link" href="#project-description">
+        <p>Link: <a href="https://github.com/css186/Tree-Based-Seminar-Database"  class="external-link" target="_blank" rel="noopener">https://github.com/css186/Tree-Based-Seminar-Database</a></p>
+<h3 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>This project is a simulated database for storing songs, artists information, and tracking relationships between them. The records stored inside are artist names and track names. The two main data structures used are a hash table and a graph.</p>
+<p>This project is a seminar database that supports multi-criteria storage, retrieval, and spatial queries. It organizes seminars&rsquo; information using binary search trees (BSTs) for attribute-based indexing and a spatial tree called &ldquo;Bintree&rdquo; for location-based queries..</p>
 <p><strong>All data structures in this project were built from scratch. The only built-in container allowed is the static array</strong></p>
 <p>Here is a breakdown of its components and functionality:</p>
 <h3 id="core-functionality">
@@ -235,29 +235,31 @@
 <li>
 <p>Data Management:</p>
 <ul>
-<li>Artists and songs are stored seperately into two hash tables, and there is a graph structure whose responsibility is to manage relationships between artists and songs.</li>
-<li>The relationships are modeled as edges in a graph. If multiple songs were written by one common artist, they should be considered as a connected component.</li>
-<li>Duplicate entries are not allowed.</li>
+<li>BSTs index seminars by: (each index will have its own BST)
+<ul>
+<li>ID (unique identifier)</li>
+<li>Cost (numeric range searching)</li>
+<li>Date (string range searching)</li>
+<li>Keywords (string exact-match searching)</li>
+</ul>
+</li>
+<li>Duplicate records are allowed and will be stored on the left child based on requirement.</li>
+<li>Bintree: The Bintree partitions 2D space to efficiently store and query seminars by their coordinates (x, y).</li>
 </ul>
 </li>
 <li>
 <p>Operations:</p>
 <ul>
-<li>Insert: User can add artist/song entries, and the database will store and connect them together automatically.</li>
-<li>Remove: User can delete entries, and the relationships will be adjusted accordingly.</li>
-<li>Print: Entries stored inside or graph statistics(connected components) can be visible in console.</li>
+<li>Insert: Adds seminars to all relevant trees after validating coordinates are valid.</li>
+<li>Delete: Removes seminars by ID from all trees.</li>
+<li>Search:
+<ul>
+<li>Exact matches (ID and keywords).</li>
+<li>Range queries (Cost and Date).</li>
+<li>Spatial radius queries (find seminars near a designated coordinate).</li>
 </ul>
 </li>
-<li>
-<p>Graph Analysis:</p>
-<ul>
-<li>Union-Find and BFS algorithms were both implemented to track connected components.</li>
-<li>Reports:
-<ul>
-<li>Total connected components.</li>
-<li>Largest connected component size.</li>
-</ul>
-</li>
+<li>Print: Visualizes tree structure in the console.</li>
 </ul>
 </li>
 </ol>
@@ -319,14 +321,6 @@ print graph
 <li>The name of the program is GraphProject. Parameter {initHashSize} is the initial size for each of the two hash tables (in terms of slots).</li>
 <li>Correct and complete format of input files can be referenced within the <code>solutionTestData</code> directory.</li>
 </ul>
-<h3 id="sample-output">
-  Sample Output
-  <a class="heading-link" href="#sample-output">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p><img src="/images/projects/ht_db.jpg" alt="image"></p>
 <h3 id="takeaways">
   Takeaways
   <a class="heading-link" href="#takeaways">
