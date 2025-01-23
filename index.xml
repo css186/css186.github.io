@@ -16,13 +16,6 @@
       <description>&lt;p&gt;Link: &lt;a href=&#34;https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;This project is a simulated database for storing songs, artists information, and tracking relationships between them. The records stored inside are artist names and track names. The two main data structures used are a hash table and a graph.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;All data structures in this project were built from scratch. The only built-in container allowed is the static array&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;</description>
     </item>
     <item>
-      <title>HTML and CSS only tabs</title>
-      <link>https://css186.github.io/posts/test/</link>
-      <pubDate>Sun, 09 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://css186.github.io/posts/test/</guid>
-      <description>&lt;h1 id=&#34;this-is-a-test-article&#34;&gt;&#xA;  This is a test article&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#this-is-a-test-article&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;</description>
-    </item>
-    <item>
       <title>Códigos curtos</title>
       <link>https://css186.github.io/tags/shortcodes/_index.pt-br/</link>
       <pubDate>Wed, 04 Jan 2023 11:51:36 +0100</pubDate>
