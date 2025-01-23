@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Graph and Hash Table Based Song/Artist Database · Brian&#39;s Blog
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Guann-Luen (Brian) Chen">
+<meta name="description" content="A graph and hash table based database implemented from scratch">
+<meta name="keywords" content="blog, developer, personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Graph and Hash Table Based Song/Artist Database">
+  <meta name="twitter:description" content="A graph and hash table based database implemented from scratch">
+
+<meta property="og:url" content="https://css186.github.io/projects/graph-hashtable-db/">
+  <meta property="og:site_name" content="Brian&#39;s Blog">
+  <meta property="og:title" content="Graph and Hash Table Based Song/Artist Database">
+  <meta property="og:description" content="A graph and hash table based database implemented from scratch">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="projects">
+    <meta property="article:published_time" content="2024-09-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-09-19T00:00:00+00:00">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="Data Structures">
+    <meta property="article:tag" content="Algorithms">
+    <meta property="article:tag" content="Hash Table">
+    <meta property="article:tag" content="Graph">
+      <meta property="og:see_also" content="https://css186.github.io/posts/test/">
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-65NG601YKS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-65NG601YKS');
+</script>
+
+
+<link rel="canonical" href="https://css186.github.io/projects/graph-hashtable-db/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.108bbadc95c6bd58d7ec57bdf44fa853af5bc620d55a9e800300f54824d71f5a.css" integrity="sha256-EIu63JXGvVjX7Fe99E&#43;oU69bxiDVWp6AAwD1SCTXH1o=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.png" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://css186.github.io/">
+      Brian&#39;s Blog
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container project">
+    <article>
+      <header>
+        <div class="project-title">
+          <h1 class="title">
+            <a class="title-link" href="https://css186.github.io/projects/graph-hashtable-db/">
+              Graph and Hash Table Based Song/Artist Database
+            </a>
+          </h1>
+        </div>
+        <div class="project-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-09-19T00:00:00Z">
+                2024-09-19
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              2-minute read
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/brian/">Brian</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/programming/">Programming</a>
+      <span class="separator">•</span>
+    <a href="/categories/data-structures-and-algorithms/">Data Structures and Algorithms</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/java/">Java</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/data-structures/">Data Structures</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/algorithms/">Algorithms</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/hash-table/">Hash Table</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/graph/">Graph</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="project-content">
+        
+        <p>Link: <a href="https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database"  class="external-link" target="_blank" rel="noopener">https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database</a></p>
+<h3 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This project is a simulated database for storing songs, artists information, and tracking relationships between them. The records stored inside are artist names and track names. The two main data structures used are a hash table and a graph.</p>
+<p><strong>All data structures in this project were built from scratch. The only built-in container allowed is the static array</strong></p>
+<p>Here is a breakdown of its components and functionality:</p>
+<h3 id="core-functionality">
+  Core Functionality
+  <a class="heading-link" href="#core-functionality">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ol>
+<li>
+<p>Data Management:</p>
+<ul>
+<li>Artists and songs are stored seperately into two hash tables, and there is a graph structure whose responsibility is to manage relationships between artists and songs.</li>
+<li>The relationships are modeled as edges in a graph. If multiple songs were written by one common artist, they should be considered as a connected component.</li>
+<li>Duplicate entries are not allowed.</li>
+</ul>
+</li>
+<li>
+<p>Operations:</p>
+<ul>
+<li>Insert: User can add artist/song entries, and the database will store and connect them together automatically.</li>
+<li>Remove: User can delete entries, and the relationships will be adjusted accordingly.</li>
+<li>Print: Entries stored inside or graph statistics(connected components) can be visible in console.</li>
+</ul>
+</li>
+<li>
+<p>Graph Analysis:</p>
+<ul>
+<li>Union-Find and BFS algorithms were both implemented to track connected components.</li>
+<li>Reports:
+<ul>
+<li>Total connected components.</li>
+<li>Largest connected component size.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="key-components">
+  Key Components
+  <a class="heading-link" href="#key-components">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ol>
+<li>
+<p>Hash Tables (<code>Hash.java</code>)</p>
+<ul>
+<li>Quadratic probing for collision resolution.</li>
+<li>Dynamic resizing (doubles capacity when load factor exceeds 50%).</li>
+<li>Tombstone markers were used for deleted entries to ensure searching works correctly.</li>
+</ul>
+</li>
+<li>
+<p>Graph (<code>Graph.java</code>)</p>
+<ul>
+<li>Graph was implemented using adjacency lists and backboned by a doubly linked list (<code>DoublyLinkedList.java</code>).</li>
+</ul>
+</li>
+<li>
+<p>Controller (<code>Controller.java</code>)</p>
+<ul>
+<li>Coordinates hash tables and graph operations.</li>
+<li>Handles command execution (i.e. insert/remove.print).</li>
+</ul>
+</li>
+<li>
+<p>Command Processing(<code>CommandProcessor.java</code>)</p>
+<ul>
+<li>Parses input files with commands like:</li>
+</ul>
+<pre tabindex="0"><code>insert &lt;artist&gt;&lt;SEP&gt;&lt;song&gt;
+remove artist &lt;name&gt;
+print graph
+</code></pre></li>
+<li>
+<p>Testing</p>
+<ul>
+<li>Extensive test coverage and mutation tests were implemented.</li>
+</ul>
+</li>
+</ol>
+<h3 id="program-invocation">
+  Program Invocation
+  <a class="heading-link" href="#program-invocation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The program will be invoked from the command line as:
+<code>java GraphProject {initHashSize} {pathOfInputFile}</code></p>
+<ul>
+<li>The name of the program is GraphProject. Parameter {initHashSize} is the initial size for each of the two hash tables (in terms of slots).</li>
+<li>Correct and complete format of input files can be referenced within the <code>solutionTestData</code> directory.</li>
+</ul>
+
+      </div>
+
+
+      <footer>
+        
+
+<section class="see-also">
+  
+    
+    
+    
+  
+</section>
+
+
+        
+        
+        <div class="comments">
+<script src="https://utteranc.es/client.js" repo="css186/css186.github.io" issue-term="url" theme="github-dark"
+  crossorigin="anonymous" async>
+  </script>
+</div>
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2024 -
+    
+    2025
+     Guann-Luen (Brian) Chen 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
