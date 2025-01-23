@@ -3,7 +3,7 @@
 
 <head>
   <title>
-  Graph and Hash Table Based Song/Artist Database · Brian&#39;s Blog
+  Memory Manager · Brian&#39;s Blog
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,32 +13,32 @@
 
 
 <meta name="author" content="Guann-Luen (Brian) Chen">
-<meta name="description" content="A graph and hash table based database implemented from scratch">
+<meta name="description" content="A simulation program for storing, managing records and handling memory allocation and data retrieval using a combination of a hash table and a memory manager">
 <meta name="keywords" content="blog, developer, personal">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Graph and Hash Table Based Song/Artist Database">
-  <meta name="twitter:description" content="A graph and hash table based database implemented from scratch">
+  <meta name="twitter:title" content="Memory Manager">
+  <meta name="twitter:description" content="A simulation program for storing, managing records and handling memory allocation and data retrieval using a combination of a hash table and a memory manager">
 
-<meta property="og:url" content="https://css186.github.io/projects/graph-hashtable-db/">
+<meta property="og:url" content="https://css186.github.io/projects/sem-manager/">
   <meta property="og:site_name" content="Brian&#39;s Blog">
-  <meta property="og:title" content="Graph and Hash Table Based Song/Artist Database">
-  <meta property="og:description" content="A graph and hash table based database implemented from scratch">
+  <meta property="og:title" content="Memory Manager">
+  <meta property="og:description" content="A simulation program for storing, managing records and handling memory allocation and data retrieval using a combination of a hash table and a memory manager">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="projects">
-    <meta property="article:published_time" content="2024-09-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-09-19T00:00:00+00:00">
+    <meta property="article:published_time" content="2024-12-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-06T00:00:00+00:00">
     <meta property="article:tag" content="Java">
     <meta property="article:tag" content="Data Structures">
     <meta property="article:tag" content="Algorithms">
     <meta property="article:tag" content="Hash Table">
-    <meta property="article:tag" content="Graph">
-      <meta property="og:see_also" content="https://css186.github.io/projects/sem-manager/">
+    <meta property="article:tag" content="Memory Management">
       <meta property="og:see_also" content="https://css186.github.io/projects/external_sort/">
       <meta property="og:see_also" content="https://css186.github.io/projects/tree-db/">
+      <meta property="og:see_also" content="https://css186.github.io/projects/graph-hashtable-db/">
 
 
 
@@ -53,7 +53,7 @@
 </script>
 
 
-<link rel="canonical" href="https://css186.github.io/projects/graph-hashtable-db/">
+<link rel="canonical" href="https://css186.github.io/projects/sem-manager/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -160,8 +160,8 @@
       <header>
         <div class="project-title">
           <h1 class="title">
-            <a class="title-link" href="https://css186.github.io/projects/graph-hashtable-db/">
-              Graph and Hash Table Based Song/Artist Database
+            <a class="title-link" href="https://css186.github.io/projects/sem-manager/">
+              Memory Manager
             </a>
           </h1>
         </div>
@@ -169,8 +169,8 @@
           <div class="date">
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="2024-09-19T00:00:00Z">
-                2024-09-19
+              <time datetime="2024-12-06T00:00:00Z">
+                2024-12-06
               </time>
             </span>
             <span class="reading-time">
@@ -207,7 +207,7 @@
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/graph/">Graph</a>
+      <a href="/tags/memory-management/">Memory Management</a>
     </span></div>
 
         </div>
@@ -215,7 +215,7 @@
 
       <div class="project-content">
         
-        <p>Link: <a href="https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database"  class="external-link" target="_blank" rel="noopener">https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database</a></p>
+        <p>Link: <a href="https://github.com/css186/External-Sorting"  class="external-link" target="_blank" rel="noopener">https://github.com/css186/External-Sorting</a></p>
 <h3 id="project-description">
   Project Description
   <a class="heading-link" href="#project-description">
@@ -223,8 +223,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>This project is a simulated database for storing songs, artists information, and tracking relationships between them. The records stored inside are artist names and track names. The two main data structures used are a hash table and a graph.</p>
-<p><strong>All data structures in this project were built from scratch. The only built-in container allowed is the static array</strong></p>
+<p>This project is a simulation program for storing, managing records and handling memory allocation and data retrieval using a combination of a hash table and a memory manager.</p>
 <p>Here is a breakdown of its components and functionality:</p>
 <h3 id="core-functionality">
   Core Functionality
@@ -235,76 +234,79 @@
 </h3>
 <ol>
 <li>
-<p>Data Management:</p>
+<p>Hash Table (<code>HashTable.java</code>)</p>
 <ul>
-<li>Artists and songs are stored seperately into two hash tables, and there is a graph structure whose responsibility is to manage relationships between artists and songs.</li>
-<li>The relationships are modeled as edges in a graph. If multiple songs were written by one common artist, they should be considered as a connected component.</li>
-<li>Duplicate entries are not allowed.</li>
+<li>Uses <strong>quadratic probing</strong> for collision resolution.</li>
+<li>Stores Record objects that pair seminar IDs with <strong>memory handles</strong>.</li>
+<li>Automatically resizes when the load factor exceeds a threshold.</li>
 </ul>
 </li>
 <li>
-<p>Operations:</p>
+<p>Memory Manager(<code>MemManager.java</code>)</p>
 <ul>
-<li>Insert: User can add artist/song entries, and the database will store and connect them together automatically.</li>
-<li>Remove: User can delete entries, and the relationships will be adjusted accordingly.</li>
-<li>Print: Entries stored inside or graph statistics(connected components) can be visible in console.</li>
+<li>Manages a dynamic byte array (memory pool) to store serialized seminar data.</li>
+<li>Uses a free block list (doubly linked list) to track available memory blocks.</li>
+<li><strong>Allocates memory for new records, splits free blocks if necessary, and merges adjacent blocks when freeing memory.</strong></li>
+<li>Expands the memory pool incrementally when space runs out.</li>
 </ul>
 </li>
 <li>
-<p>Graph Analysis:</p>
+<p>Seminar Object (<code>Seminar.java</code>)</p>
 <ul>
-<li>Union-Find and BFS algorithms were both implemented to track connected components.</li>
-<li>Reports:
-<ul>
-<li>Total connected components.</li>
-<li>Largest connected component size.</li>
+<li>Represents seminar data (ID, title, date, location, cost, keywords, etc.).</li>
+<li>Supports serialization/deserialization to convert objects to/from byte streams for storage in the memory pool.</li>
 </ul>
 </li>
+<li>
+<p>Controller (<code>Controller.java</code>)</p>
+<ul>
+<li>Coordinates interactions between the hash table and memory manager.</li>
+<li>Implements operations: insert, search, delete, print (hash table or free blocks).</li>
+</ul>
+</li>
+<li>
+<p>Command Processor (<code>CommandProcessor.java</code>)</p>
+<ul>
+<li>Parses input files containing commands (insert, search, delete, print).</li>
+<li>Executes commands by invoking the controller.</li>
 </ul>
 </li>
 </ol>
-<h3 id="key-components">
-  Key Components
-  <a class="heading-link" href="#key-components">
+<h3 id="key-workflows">
+  Key Workflows
+  <a class="heading-link" href="#key-workflows">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
 <ol>
 <li>
-<p>Hash Tables (<code>Hash.java</code>)</p>
+<p>Insert</p>
 <ul>
-<li>Quadratic probing for collision resolution.</li>
-<li>Dynamic resizing (doubles capacity when load factor exceeds 50%).</li>
-<li>Tombstone markers were used for deleted entries to ensure searching works correctly.</li>
+<li>Serializes the seminar into a byte array.</li>
+<li>Allocates memory via MemManager and stores the data.</li>
+<li>Updates the hash table with the ID and memory handle.</li>
 </ul>
 </li>
 <li>
-<p>Graph (<code>Graph.java</code>)</p>
+<p>Search</p>
 <ul>
-<li>Graph was implemented using adjacency lists and backboned by a doubly linked list (<code>DoublyLinkedList.java</code>).</li>
+<li>Retrieves the handle from the hash table using the ID.</li>
+<li>Fetches the byte array from memory and deserializes it into a Seminar object.</li>
 </ul>
 </li>
 <li>
-<p>Controller (<code>Controller.java</code>)</p>
+<p>Delete</p>
 <ul>
-<li>Coordinates hash tables and graph operations.</li>
-<li>Handles command execution (i.e. insert/remove.print).</li>
+<li>Removes the ID from the hash table.</li>
+<li>Marks the associated memory block as free (merged with adjacent blocks if possible).</li>
 </ul>
 </li>
 <li>
-<p>Command Processing(<code>CommandProcessor.java</code>)</p>
+<p>Memory Management</p>
 <ul>
-<li>Parses input files with commands like:</li>
-</ul>
-<pre tabindex="0"><code>insert &lt;artist&gt;&lt;SEP&gt;&lt;song&gt;
-remove artist &lt;name&gt;
-print graph
-</code></pre></li>
-<li>
-<p>Testing</p>
-<ul>
-<li>Extensive test coverage and mutation tests were implemented.</li>
+<li>Uses a <strong>best-fit</strong> strategy to allocate memory from the free block list.</li>
+<li><strong>Merges adjacent free blocks during insert and remove operations to reduce fragmentation.</strong></li>
 </ul>
 </li>
 </ol>
@@ -316,10 +318,9 @@ print graph
   </a>
 </h3>
 <p>The program will be invoked from the command line as:
-<code>java GraphProject {initHashSize} {pathOfInputFile}</code></p>
+<code>java SemMananager {initial-memory-size} {initial-hash-size} {command-file}</code></p>
 <ul>
-<li>The name of the program is GraphProject. Parameter {initHashSize} is the initial size for each of the two hash tables (in terms of slots).</li>
-<li>Correct and complete format of input files can be referenced within the <code>solutionTestData</code> directory.</li>
+<li>Correct and complete format of input files can be referenced with text files having the <code>_input.txt</code> postfix</li>
 </ul>
 <h3 id="sample-output">
   Sample Output
@@ -328,7 +329,7 @@ print graph
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p><img src="/images/projects/ht_db.png" alt="image"></p>
+<p><img src="/images/projects/mem.png" alt="image"></p>
 <h3 id="takeaways">
   Takeaways
   <a class="heading-link" href="#takeaways">
@@ -336,10 +337,10 @@ print graph
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<ol>
-<li>Using tombstone to mark deleted item is a really clever move.</li>
-<li>BFS algorithms is an additional feature as the requirement only covers Union-Find. Since there is a doubly linked list can be used, why not repeat myself in order to have a better grasp on one of the most important algorithms.</li>
-</ol>
+<ul>
+<li>This program efficiently manages seminar records in memory, ensuring fast lookups (via hashing) and optimized memory usage (via dynamic block allocation/merging).</li>
+<li>Still, code up memory management related functionality is quite challenging and I am very glad that I gave it a try.</li>
+</ul>
 
       </div>
 

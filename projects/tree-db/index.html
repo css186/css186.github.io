@@ -36,6 +36,8 @@
     <meta property="article:tag" content="Algorithms">
     <meta property="article:tag" content="Binary Search Tree">
     <meta property="article:tag" content="Spatial Tree">
+      <meta property="og:see_also" content="https://css186.github.io/projects/sem-manager/">
+      <meta property="og:see_also" content="https://css186.github.io/projects/external_sort/">
       <meta property="og:see_also" content="https://css186.github.io/projects/graph-hashtable-db/">
 
 
@@ -173,7 +175,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              2-minute read
+              3-minute read
             </span>
           </div>
           <div class="authors">
@@ -243,7 +245,7 @@
 <li>Keywords (string exact-match searching)</li>
 </ul>
 </li>
-<li>Duplicate records are allowed and will be stored on the left child based on requirement.</li>
+<li>Duplicate records are allowed and will be stored on the left subtrees based on requirement.</li>
 <li>Bintree: The Bintree partitions 2D space to efficiently store and query seminars by their coordinates (x, y).</li>
 </ul>
 </li>
@@ -272,24 +274,26 @@
 </h3>
 <ol>
 <li>
-<p>Hash Tables (<code>Hash.java</code>)</p>
+<p>Binary Search Trees (<code>BiarySearchTree.java</code>)</p>
 <ul>
-<li>Quadratic probing for collision resolution.</li>
-<li>Dynamic resizing (doubles capacity when load factor exceeds 50%).</li>
-<li>Tombstone markers were used for deleted entries to ensure searching works correctly.</li>
+<li>Implemented using Generics.</li>
+<li>Handle duplicates (stored in left subtree).</li>
+<li>Support range searches.</li>
+<li>Track traversal counts.</li>
 </ul>
 </li>
 <li>
-<p>Graph (<code>Graph.java</code>)</p>
+<p>Bintree (<code>Bintree.java</code>)</p>
 <ul>
-<li>Graph was implemented using adjacency lists and backboned by a doubly linked list (<code>DoublyLinkedList.java</code>).</li>
+<li>Internal Nodes: Split space into quadrants (horizontal/vertical splits based on current dimensions).</li>
+<li>Leaf Nodes: Store seminars and the same location. Split into internal nodes when capacity is exceeded.</li>
+<li>Spatial Queries: Find seminars within a radius of a given (x, y) coordinates.</li>
 </ul>
 </li>
 <li>
-<p>Controller (<code>Controller.java</code>)</p>
+<p>Seminar Class (<code>Seminar.java</code>)</p>
 <ul>
-<li>Coordinates hash tables and graph operations.</li>
-<li>Handles command execution (i.e. insert/remove.print).</li>
+<li>Stores metadata: ID, title, date, duration, cost, keywords, description, and coordinates (x, y).</li>
 </ul>
 </li>
 <li>
@@ -297,9 +301,10 @@
 <ul>
 <li>Parses input files with commands like:</li>
 </ul>
-<pre tabindex="0"><code>insert &lt;artist&gt;&lt;SEP&gt;&lt;song&gt;
-remove artist &lt;name&gt;
-print graph
+<pre tabindex="0"><code>insert &lt;ID&gt; &lt;title&gt; &lt;date&gt; &lt;x&gt; &lt;y&gt; &lt;cost&gt; &lt;keywords&gt; &lt;description&gt;
+print &lt;ID|date|keyword|cost|location&gt;
+search &lt;ID|keyword|cost|date|location&gt; [parameters]
+delete &lt;ID&gt;
 </code></pre></li>
 <li>
 <p>Testing</p>
@@ -316,11 +321,19 @@ print graph
   </a>
 </h3>
 <p>The program will be invoked from the command line as:
-<code>java GraphProject {initHashSize} {pathOfInputFile}</code></p>
+<code>java SemSearch {worldSize} {commandFile}</code></p>
 <ul>
-<li>The name of the program is GraphProject. Parameter {initHashSize} is the initial size for each of the two hash tables (in terms of slots).</li>
+<li>Parameter {worldSize} is an integer that is a power of two, and it speciaies the size of the world for the seminar location aield. The world is assumed to have x and y coordinates from 0 to {worldSize - 1}.</li>
 <li>Correct and complete format of input files can be referenced within the <code>solutionTestData</code> directory.</li>
 </ul>
+<h3 id="sample-output">
+  Sample Output
+  <a class="heading-link" href="#sample-output">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><img src="/images/projects/tree_db.png" alt="image"></p>
 <h3 id="takeaways">
   Takeaways
   <a class="heading-link" href="#takeaways">
@@ -329,8 +342,8 @@ print graph
   </a>
 </h3>
 <ol>
-<li>Using tombstone to mark deleted item is a really clever move.</li>
-<li>BFS algorithms is an additional feature as the requirement only covers Union-Find. Since there is a doubly linked list can be used, why not repeat myself in order to have a better grasp on one of the most important algorithms.</li>
+<li>Binary Search Tree is not the best option to be the backbone of a database. However, it is a very basic and important data structure due to its efficiency.</li>
+<li>This was my first time trying to implement a spatial tree from scratch, so it was quite a challenge to me. The difficulty lies in understanding how nodes will split in different dimensions. Also, the abstraction of creating container is always considered not so easy. I absolutely learnt a lot through this project.</li>
 </ol>
 
       </div>

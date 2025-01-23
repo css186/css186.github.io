@@ -6,8 +6,22 @@
     <description>Recent content in Java on Brian&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://css186.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Memory Manager</title>
+      <link>https://css186.github.io/projects/sem-manager/</link>
+      <pubDate>Fri, 06 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://css186.github.io/projects/sem-manager/</guid>
+      <description>&lt;p&gt;Link: &lt;a href=&#34;https://github.com/css186/External-Sorting&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/css186/External-Sorting&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;project-description&#34;&gt;&#xA;  Project Description&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-description&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;This project is a simulation program for storing, managing records and handling memory allocation and data retrieval using a combination of a hash table and a memory manager.&lt;/p&gt;&#xA;&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;&#xA;&lt;h3 id=&#34;core-functionality&#34;&gt;&#xA;  Core Functionality&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#core-functionality&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Hash Table (&lt;code&gt;HashTable.java&lt;/code&gt;)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Uses &lt;strong&gt;quadratic probing&lt;/strong&gt; for collision resolution.&lt;/li&gt;&#xA;&lt;li&gt;Stores Record objects that pair seminar IDs with &lt;strong&gt;memory handles&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Automatically resizes when the load factor exceeds a threshold.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Memory Manager(&lt;code&gt;MemManager.java&lt;/code&gt;)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>External Sorting</title>
+      <link>https://css186.github.io/projects/external_sort/</link>
+      <pubDate>Fri, 08 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://css186.github.io/projects/external_sort/</guid>
+      <description>&lt;p&gt;Link: &lt;a href=&#34;https://github.com/css186/External-Sorting&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/css186/External-Sorting&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;project-description&#34;&gt;&#xA;  Project Description&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-description&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;This program implements an &lt;strong&gt;external sorting algorithm&lt;/strong&gt; designed to handle large datasets that exceed memory capacity. It uses &lt;strong&gt;replacement selection&lt;/strong&gt; to create sorted runs and &lt;strong&gt;multiway merging&lt;/strong&gt; to combine them into a single sorted output.&lt;/p&gt;&#xA;&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;&#xA;&lt;h3 id=&#34;core-functionality&#34;&gt;&#xA;  Core Functionality&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#core-functionality&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;External Sorting&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Replacement Selection (&lt;code&gt;ReplacementSelection.java&lt;/code&gt;)&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Tree-Based Seminar Database</title>
       <link>https://css186.github.io/projects/tree-db/</link>
