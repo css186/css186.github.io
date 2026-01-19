@@ -1,40 +1,70 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Brian on Brian&#39;s Blog</title>
-    <link>https://css186.github.io/authors/brian/</link>
-    <description>Recent content in Brian on Brian&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 06 Dec 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://css186.github.io/authors/brian/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Memory Manager</title>
-      <link>https://css186.github.io/projects/sem-manager/</link>
-      <pubDate>Fri, 06 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://css186.github.io/projects/sem-manager/</guid>
-      <description>&lt;p&gt;Link: &lt;a href=&#34;https://github.com/css186/External-Sorting&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/css186/External-Sorting&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;project-description&#34;&gt;&#xA;  Project Description&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-description&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;This project is a simulation program for storing, managing records and handling memory allocation and data retrieval using a combination of a hash table and a memory manager.&lt;/p&gt;&#xA;&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;&#xA;&lt;h3 id=&#34;core-functionality&#34;&gt;&#xA;  Core Functionality&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#core-functionality&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Hash Table (&lt;code&gt;HashTable.java&lt;/code&gt;)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Uses &lt;strong&gt;quadratic probing&lt;/strong&gt; for collision resolution.&lt;/li&gt;&#xA;&lt;li&gt;Stores Record objects that pair seminar IDs with &lt;strong&gt;memory handles&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Automatically resizes when the load factor exceeds a threshold.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Memory Manager(&lt;code&gt;MemManager.java&lt;/code&gt;)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>External Sorting</title>
-      <link>https://css186.github.io/projects/external_sort/</link>
-      <pubDate>Fri, 08 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://css186.github.io/projects/external_sort/</guid>
-      <description>&lt;p&gt;Link: &lt;a href=&#34;https://github.com/css186/External-Sorting&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/css186/External-Sorting&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;project-description&#34;&gt;&#xA;  Project Description&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-description&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;This program implements an &lt;strong&gt;external sorting algorithm&lt;/strong&gt; designed to handle large datasets that exceed memory capacity. It uses &lt;strong&gt;replacement selection&lt;/strong&gt; to create sorted runs and &lt;strong&gt;multiway merging&lt;/strong&gt; to combine them into a single sorted output.&lt;/p&gt;&#xA;&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;&#xA;&lt;h3 id=&#34;core-functionality&#34;&gt;&#xA;  Core Functionality&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#core-functionality&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;External Sorting&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Replacement Selection (&lt;code&gt;ReplacementSelection.java&lt;/code&gt;)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Tree-Based Seminar Database</title>
-      <link>https://css186.github.io/projects/tree-db/</link>
-      <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://css186.github.io/projects/tree-db/</guid>
-      <description>&lt;p&gt;Link: &lt;a href=&#34;https://github.com/css186/Tree-Based-Seminar-Database&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/css186/Tree-Based-Seminar-Database&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;project-description&#34;&gt;&#xA;  Project Description&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-description&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;This project is a seminar database that supports multi-criteria storage, retrieval, and spatial queries. It organizes seminars&amp;rsquo; information using binary search trees (BSTs) for attribute-based indexing and a spatial tree called &amp;ldquo;Bintree&amp;rdquo; for location-based queries..&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;All data structures in this project were built from scratch. The only built-in container allowed is the static array&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Graph and Hash Table Based Song/Artist Database</title>
-      <link>https://css186.github.io/projects/graph-hashtable-db/</link>
-      <pubDate>Thu, 19 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://css186.github.io/projects/graph-hashtable-db/</guid>
-      <description>&lt;p&gt;Link: &lt;a href=&#34;https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;project-description&#34;&gt;&#xA;  Project Description&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-description&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;This project is a simulated database for storing songs, artists information, and tracking relationships between them. The records stored inside are artist names and track names. The two main data structures used are a hash table and a graph.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;All data structures in this project were built from scratch. The only built-in container allowed is the static array&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Brian on Brian's Blog</title><link>https://css186.github.io/authors/brian/</link><description>Recent content in Brian on Brian's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 06 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://css186.github.io/authors/brian/index.xml" rel="self" type="application/rss+xml"/><item><title>Memory Manager</title><link>https://css186.github.io/projects/sem-manager/</link><pubDate>Fri, 06 Dec 2024 00:00:00 +0000</pubDate><guid>https://css186.github.io/projects/sem-manager/</guid><description>&lt;p&gt;Link: &lt;a href="https://github.com/css186/External-Sorting" class="external-link" target="_blank" rel="noopener"&gt;https://github.com/css186/External-Sorting&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="project-description"&gt;
+ Project Description
+ &lt;a class="heading-link" href="#project-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This project is a simulation program for storing, managing records and handling memory allocation and data retrieval using a combination of a hash table and a memory manager.&lt;/p&gt;
+&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;
+&lt;h3 id="core-functionality"&gt;
+ Core Functionality
+ &lt;a class="heading-link" href="#core-functionality"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Hash Table (&lt;code&gt;HashTable.java&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uses &lt;strong&gt;quadratic probing&lt;/strong&gt; for collision resolution.&lt;/li&gt;
+&lt;li&gt;Stores Record objects that pair seminar IDs with &lt;strong&gt;memory handles&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Automatically resizes when the load factor exceeds a threshold.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Memory Manager(&lt;code&gt;MemManager.java&lt;/code&gt;)&lt;/p&gt;</description></item><item><title>External Sorting</title><link>https://css186.github.io/projects/external_sort/</link><pubDate>Fri, 08 Nov 2024 00:00:00 +0000</pubDate><guid>https://css186.github.io/projects/external_sort/</guid><description>&lt;p&gt;Link: &lt;a href="https://github.com/css186/External-Sorting" class="external-link" target="_blank" rel="noopener"&gt;https://github.com/css186/External-Sorting&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="project-description"&gt;
+ Project Description
+ &lt;a class="heading-link" href="#project-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This program implements an &lt;strong&gt;external sorting algorithm&lt;/strong&gt; designed to handle large datasets that exceed memory capacity. It uses &lt;strong&gt;replacement selection&lt;/strong&gt; to create sorted runs and &lt;strong&gt;multiway merging&lt;/strong&gt; to combine them into a single sorted output.&lt;/p&gt;
+&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;
+&lt;h3 id="core-functionality"&gt;
+ Core Functionality
+ &lt;a class="heading-link" href="#core-functionality"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;External Sorting&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Replacement Selection (&lt;code&gt;ReplacementSelection.java&lt;/code&gt;)&lt;/p&gt;</description></item><item><title>Tree-Based Seminar Database</title><link>https://css186.github.io/projects/tree-db/</link><pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate><guid>https://css186.github.io/projects/tree-db/</guid><description>&lt;p&gt;Link: &lt;a href="https://github.com/css186/Tree-Based-Seminar-Database" class="external-link" target="_blank" rel="noopener"&gt;https://github.com/css186/Tree-Based-Seminar-Database&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="project-description"&gt;
+ Project Description
+ &lt;a class="heading-link" href="#project-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This project is a seminar database that supports multi-criteria storage, retrieval, and spatial queries. It organizes seminars&amp;rsquo; information using binary search trees (BSTs) for attribute-based indexing and a spatial tree called &amp;ldquo;Bintree&amp;rdquo; for location-based queries..&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;All data structures in this project were built from scratch. The only built-in container allowed is the static array&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;</description></item><item><title>Graph and Hash Table Based Song/Artist Database</title><link>https://css186.github.io/projects/graph-hashtable-db/</link><pubDate>Thu, 19 Sep 2024 00:00:00 +0000</pubDate><guid>https://css186.github.io/projects/graph-hashtable-db/</guid><description>&lt;p&gt;Link: &lt;a href="https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database" class="external-link" target="_blank" rel="noopener"&gt;https://github.com/css186/Graph-and-Hash-Table-Based-Song-Artist-Database&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="project-description"&gt;
+ Project Description
+ &lt;a class="heading-link" href="#project-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This project is a simulated database for storing songs, artists information, and tracking relationships between them. The records stored inside are artist names and track names. The two main data structures used are a hash table and a graph.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;All data structures in this project were built from scratch. The only built-in container allowed is the static array&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Here is a breakdown of its components and functionality:&lt;/p&gt;</description></item></channel></rss>
