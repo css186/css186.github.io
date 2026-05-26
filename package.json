@@ -1,0 +1,30 @@
+{
+  "name": "css186.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tinacms:build": "tinacms build",
+    "build": "hugo --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/css186/css186.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/css186/css186.github.io/issues"
+  },
+  "homepage": "https://github.com/css186/css186.github.io#readme",
+  "dependencies": {
+    "tinacms": "^3.8.2"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^2.4.0",
+    "@types/node": "^25.9.1"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

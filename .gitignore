@@ -4,3 +4,7 @@ resources/_gen/
 .hugo_build.lock
 .DS_Store
 node_modules/
+node_modules
+.env
+tina/__generated__
+static/admin/

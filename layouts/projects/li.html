@@ -1,0 +1,8 @@
+<li>
+  <span class="date" style="text-align: left; margin-left: 5em;">
+    {{- if not .Date.IsZero -}}
+      {{ .Date | time.Format (.Site.Params.dateFormat | default "2006-01-02") }}
+    {{- end -}}
+  </span>
+  <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
+</li>
