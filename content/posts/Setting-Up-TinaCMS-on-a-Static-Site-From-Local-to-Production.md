@@ -370,28 +370,7 @@ Check:
 * Whether the production branch is correct.
 * Whether the hosting platform redeploys when that branch receives a push.
 
-## 12. Recommended Git Tracking Rules
-
-Recommended to commit:
-
-```text
-tina/config.ts
-tina/tina-lock.json
-package.json
-package-lock.json
-content/
-```
-
-Recommended to ignore:
-
-```gitignore
-node_modules/
-.env
-tina/__generated__/
-static/admin/
-```
-
-`static/admin/` is build output and does not always need to be committed. As long as CI runs `tinacms build`, it will be regenerated during production deployment.
+***
 
 ## References
 
