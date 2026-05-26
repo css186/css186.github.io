@@ -1,0 +1,18 @@
+<section class="container centered">
+    <div class="about">
+        {{ partialCached "home/avatar.html" . }}
+
+        {{/* partialCached "home/author.html" . */}}
+
+        {{/* partialCached "home/social.html" . */}}
+
+        {{ .Content }}
+    </div>
+
+</section>
+
+<!-- Load Timeline JS -->
+{{ $timelineJS := resources.Get "js/timeline.js" }}
+{{ if $timelineJS }}
+<script src="{{ $timelineJS.RelPermalink }}"></script>
+{{ end }}

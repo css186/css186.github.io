@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # Personal Access Token
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          
+          # 公開網頁 Repo 
+          external_repository: css186/css186.github.io
+          
+          publish_branch: main 
+          
+          publish_dir: ./public
+          
+          # 若CNAME 檔案不在 public 裡，可以在這裡設定，沒有就註解掉
+          # cname: example.com

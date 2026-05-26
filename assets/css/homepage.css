@@ -1,0 +1,316 @@
+/* Glassmorphism Variables */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --text-gradient: linear-gradient(to right, #667eea, #764ba2);
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --glass-bg: rgba(0, 0, 0, 0.2);
+        --glass-border: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Utilities */
+.gradient-text {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    display: inline-block;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Frontend Showcase Section */
+.frontend-showcase {
+    text-align: center;
+    margin: 4rem auto;
+}
+
+.skill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.skill-item {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: default;
+    color: inherit;
+}
+
+.skill-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    border-color: #764ba2;
+}
+
+.skill-item i {
+    color: #764ba2;
+    /* Accent color for icons */
+}
+
+/* Social Icons Adjustment */
+.social-icons ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 2rem 0 0 0 !important;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-icons li {
+    display: inline-block;
+    margin: 0 !important;
+}
+
+.social-icons a {
+    border: none !important;
+    text-decoration: none !important;
+}
+
+
+/* Interactive Scroll Focus Timeline */
+.timeline-wrapper {
+    width: 100%;
+    /* min-height: 100vh; Removed to fit into existing page flow better */
+    height: 100%;
+    color: inherit;
+    padding: 50px 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* Prevent horizontal overflow from animations */
+}
+
+.timeline-block {
+    z-index: 1;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* The Vertical Line */
+.timeline-block:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+.each-year {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.timeline-block .title {
+    font-weight: 800;
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 20px;
+    transition: all 0.8s ease-in-out;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 1;
+}
+
+.each-event {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: inherit;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    width: 45%;
+    /* Responsive width */
+    max-width: 400px;
+    position: relative;
+    border-radius: 12px;
+    box-sizing: border-box;
+    transition: all 0.5s ease-in-out;
+    opacity: 1;
+}
+
+/* Dot on the line */
+.each-event:before {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #3b82f6;
+    /* Accent Color */
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    /* Glow */
+    transition: all 0.5s ease;
+}
+
+/* Left Side (Odd Events - via margin pushing) */
+/* Note: The new HTML structure puts each year in its own block. 
+   We will center titles, and alternate events inside. */
+
+/* Logic: 
+   .each-year:nth-child(odd) .each-event -> Right Side
+   .each-year:nth-child(even) .each-event -> Left Side
+   (or vice versa)
+*/
+
+.each-year:nth-child(odd) .each-event {
+    margin-left: 55%;
+    /* Push to right side */
+    text-align: left;
+}
+
+/* Dot positioning for Right Side items */
+.each-year:nth-child(odd) .each-event:before {
+    left: -11.1%;
+    /* Positions dot on the center line */
+    /* Calculation: 5% gap / 45% width = ~11.1% */
+    left: calc(-11.1% - 9px);
+}
+
+.each-year:nth-child(even) .each-event {
+    margin-left: 0;
+    margin-right: 55%;
+    /* Push to left side?? No, margin-left: 0 and width 45% stays left. */
+    text-align: right;
+}
+
+/* Dot positioning for Left Side items */
+.each-year:nth-child(even) .each-event:before {
+    right: -11.1%;
+    right: calc(-11.1% - 9px);
+    left: auto;
+}
+
+
+/* Focus Effects (Added by JS) */
+.title.non-focus {
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.each-event.non-focus {
+    opacity: 0.3;
+    transform: scale(0.95);
+    filter: blur(2px);
+}
+
+.each-event.non-focus:before {
+    background-color: #555;
+    box-shadow: none;
+}
+
+/* Internal Typography */
+.event-year {
+    font-size: 1.1rem;
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.event-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.event-description {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .timeline-block:before {
+        left: 20px;
+        /* Move line to left */
+        transform: none;
+    }
+
+    .timeline-block .title {
+        text-align: left;
+        padding-left: 50px;
+        font-size: 2rem;
+    }
+
+    .each-event,
+    .each-year:nth-child(odd) .each-event,
+    .each-year:nth-child(even) .each-event {
+        width: calc(100% - 50px);
+        margin-left: 50px !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+    }
+
+    .each-event:before,
+    .each-year:nth-child(odd) .each-event:before,
+    .each-year:nth-child(even) .each-event:before {
+        left: -38px !important;
+        /* Align dot on left line */
+        right: auto !important;
+    }
+}
+
+/* Hero Section Enhancement */
+.hero-section {
+    text-align: center;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+}
+
+.hero-section h1 {
+    margin-bottom: -0.3rem !important;
+    line-height: 1.1 !important;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto 0.5rem auto !important;
+    line-height: 1.6 !important;
+}

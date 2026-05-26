@@ -1,0 +1,31 @@
+{{ define "title" }}
+  {{ title (i18n (lower .Title)) | default .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+  <section class="container list">
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="{{ .Permalink | safeURL }}">
+          {{ title (i18n (lower .Title)) | default .Title }}
+        </a>
+      </h1>
+    </header>
+    {{ .Content }}
+    <!-- Add table header -->
+    <div class="project-header" style="margin-left: 5em;">
+          <span style="display: inline-block; width: 15em;">Date</span>
+          <span style="display: inline-block;">Title</span>
+    </div>
+        
+    <!-- Add divider -->
+    <hr style="margin-left: 5em; margin-right: 5em;">
+
+    <ul style="margin-top: 0; padding-top: 0;">
+      {{- range .Paginator.Pages -}}
+        {{- .Render "li" -}}
+      {{- end -}}
+    </ul>
+
+    {{ partial "pagination.html" . }}
+  </section>
+{{ end }}
