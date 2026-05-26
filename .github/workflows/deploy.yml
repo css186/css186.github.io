@@ -18,6 +18,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    env:
+      TINA_PUBLIC_CLIENT_ID: ${{ vars.TINA_PUBLIC_CLIENT_ID || secrets.TINA_PUBLIC_CLIENT_ID }}
+      TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+      TINA_PUBLIC_BRANCH: main
 
     steps:
       - name: Checkout
@@ -43,12 +49,19 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Verify TinaCMS environment
+        run: |
+          if [ -z "$TINA_PUBLIC_CLIENT_ID" ]; then
+            echo "::error::Missing TinaCMS client id. Set TINA_PUBLIC_CLIENT_ID in the github-pages environment or repository Actions variables/secrets."
+            exit 1
+          fi
+          if [ -z "$TINA_TOKEN" ]; then
+            echo "::error::Missing TinaCMS token. Set TINA_TOKEN in the github-pages environment or repository Actions secrets."
+            exit 1
+          fi
+
       - name: Build TinaCMS admin
         run: npm run tinacms:build
-        env:
-          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          TINA_PUBLIC_BRANCH: main
 
       - name: Build Hugo
         run: npm run build
