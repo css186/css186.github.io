@@ -16,7 +16,7 @@ categories = [
 ]
 series = ["Theme Demo"]
 aliases = ["migrate-from-jekyl"]
-draft = "false"
+draft = false
 +++
 
 Link: https://github.com/css186/External-Sorting

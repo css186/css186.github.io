@@ -16,7 +16,7 @@ categories = [
 ]
 series = ["Theme Demo"]
 aliases = ["migrate-from-jekyl"]
-draft = "false"
+draft = false
 +++
 
 Link: https://github.com/css186/External-Sorting
@@ -84,5 +84,5 @@ The program will be invoked from the command line as:
 
 ### Takeaways
 
-- This program efficiently manages seminar records in memory, ensuring fast lookups (via hashing) and optimized memory usage (via dynamic block allocation/merging). 
+- This program efficiently manages seminar records in memory, ensuring fast lookups (via hashing) and optimized memory usage (via dynamic block allocation/merging).
 - Still, code up memory management related functionality is quite challenging and I am very glad that I gave it a try.

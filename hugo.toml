@@ -149,25 +149,6 @@ icon = "fa-brands fa-linkedin fa-2x"
 weight = 2
 url = "https://www.linkedin.com/in/brian-chen-xjp6/"
 
-[[params.social]]
-name = "Facebook"
-icon = "fa-brands fa-facebook fa-2x"
-weight = 3
-url = "https://www.facebook.com/brianchen001/"
-
-[[params.social]]
-name = "Instagram"
-icon = "fa-brands fa-instagram fa-2x"
-weight = 4
-url = "https://www.instagram.com/brianchen_001/"
-
-
-[[params.social]]
-name = "HackMD"
-icon = "fa-brands fa-markdown fa-2x"
-weight = 5
-url = "https://hackmd.io/@brianchen001"
-
 # [[params.social]]
 # name = "RSS"
 # icon = "fa-solid fa-rss fa-2x"
