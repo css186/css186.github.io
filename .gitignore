@@ -8,3 +8,4 @@ node_modules
 .env
 tina/__generated__
 static/admin/
+docs/

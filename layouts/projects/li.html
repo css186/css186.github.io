@@ -1,8 +1,13 @@
-<li>
-  <span class="date" style="text-align: left; margin-left: 5em;">
+<li class="portfolio-entry-card">
+  <a class="portfolio-entry-link" href="{{ .Params.externalLink | default .RelPermalink }}">
+    <span class="portfolio-entry-date">
     {{- if not .Date.IsZero -}}
       {{ .Date | time.Format (.Site.Params.dateFormat | default "2006-01-02") }}
     {{- end -}}
-  </span>
-  <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
+    </span>
+    <span class="portfolio-entry-title">{{ .Title }}</span>
+    {{ with .Description }}
+      <span class="portfolio-entry-description">{{ . }}</span>
+    {{ end }}
+  </a>
 </li>

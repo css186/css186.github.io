@@ -1,0 +1,12 @@
+<script>
+    (function () {
+        try {
+            var storedTheme = localStorage.getItem("portfolio-theme");
+            var theme = storedTheme === "neo" ? "tokyo" : storedTheme === "dark" ? "cyber" : storedTheme || "tokyo";
+            document.documentElement.dataset.portfolioTheme = theme;
+            localStorage.setItem("colorscheme", theme === "light" ? "light" : "dark");
+        } catch (error) {
+            document.documentElement.dataset.portfolioTheme = "tokyo";
+        }
+    })();
+</script>

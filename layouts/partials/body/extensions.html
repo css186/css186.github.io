@@ -1,0 +1,57 @@
+<script>
+    (function () {
+        var storageKey = "portfolio-theme";
+        var toggle = document.getElementById("portfolio-theme-toggle");
+        var label = document.querySelector("[data-portfolio-theme-label]");
+        var allowedThemes = ["tokyo", "light", "cyber"];
+        var themeLabels = {
+            tokyo: "Tokyo Night",
+            light: "Light",
+            cyber: "Cyber Terminal"
+        };
+
+        function normalizeTheme(theme) {
+            if (theme === "neo") {
+                return "tokyo";
+            }
+            if (theme === "dark") {
+                return "cyber";
+            }
+            return allowedThemes.indexOf(theme) === -1 ? "tokyo" : theme;
+        }
+
+        function syncSystemTheme(theme) {
+            var systemTheme = theme === "light" ? "light" : "dark";
+            if (typeof setTheme === "function") {
+                setTheme(systemTheme);
+                localStorage.setItem("colorscheme", systemTheme);
+            }
+        }
+
+        function setPortfolioTheme(theme) {
+            var nextTheme = normalizeTheme(theme);
+            document.documentElement.dataset.portfolioTheme = nextTheme;
+            localStorage.setItem(storageKey, nextTheme);
+            syncSystemTheme(nextTheme);
+
+            if (toggle) {
+                toggle.dataset.portfolioThemeCurrent = nextTheme;
+                toggle.setAttribute("aria-label", "Switch portfolio theme. Current: " + themeLabels[nextTheme]);
+                toggle.setAttribute("title", "Theme: " + themeLabels[nextTheme]);
+            }
+            if (label) {
+                label.textContent = themeLabels[nextTheme];
+            }
+        }
+
+        if (toggle) {
+            toggle.addEventListener("click", function () {
+                var currentTheme = normalizeTheme(document.documentElement.dataset.portfolioTheme);
+                var nextIndex = (allowedThemes.indexOf(currentTheme) + 1) % allowedThemes.length;
+                setPortfolioTheme(allowedThemes[nextIndex]);
+            });
+        }
+
+        setPortfolioTheme(localStorage.getItem(storageKey) || document.documentElement.dataset.portfolioTheme || "tokyo");
+    })();
+</script>

@@ -1,5 +1,6 @@
 ---
 title: "Home"
+description: "Brian Chen's portfolio for backend systems, AI agents, cloud infrastructure, and data-heavy engineering projects."
 ---
 
 <div class="hero-section">
