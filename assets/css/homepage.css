@@ -426,6 +426,8 @@ html[data-portfolio-theme="cyber"] .button-primary {
     border: 1px solid var(--portfolio-border);
     border-radius: 8px;
     box-shadow: var(--portfolio-shadow);
+    transform-origin: center;
+    will-change: transform, opacity;
 }
 
 .hero-card:after {
@@ -456,6 +458,8 @@ html[data-portfolio-theme="light"] .hero-card:after {
     border-radius: 8px;
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
     filter: saturate(1.04) contrast(1.02);
+    transform-origin: center;
+    will-change: transform;
 }
 
 .social-icons ul {
@@ -537,6 +541,8 @@ html[data-portfolio-theme="light"] .hero-card:after {
     border: 1px solid var(--portfolio-border);
     border-radius: 8px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    transform-origin: center;
+    will-change: transform, opacity;
 }
 
 .expertise-card:before,
@@ -728,6 +734,8 @@ html[data-portfolio-theme="light"] .hero-card:after {
     border-radius: 8px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
     transition: opacity 260ms ease, transform 260ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    transform-origin: center;
+    will-change: transform, opacity;
 }
 
 .each-event:hover {
@@ -778,6 +786,19 @@ html[data-portfolio-theme="light"] .hero-card:after {
 .is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.gsap-ready .section-heading,
+.gsap-ready .expertise-card,
+.gsap-ready .project-card,
+.gsap-ready .each-year,
+.gsap-ready .each-event,
+.gsap-ready .hero-card,
+.gsap-ready .hero-avatar,
+.gsap-ready .button,
+.gsap-ready .social-icons a,
+.gsap-ready .portfolio-theme-toggle {
+    backface-visibility: hidden;
 }
 
 .portfolio-list-page {
