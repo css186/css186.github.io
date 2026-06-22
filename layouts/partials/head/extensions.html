@@ -4,7 +4,7 @@
             var storedTheme = localStorage.getItem("portfolio-theme");
             var theme = storedTheme === "neo" ? "tokyo" : storedTheme === "dark" ? "cyber" : storedTheme || "tokyo";
             document.documentElement.dataset.portfolioTheme = theme;
-            localStorage.setItem("colorscheme", theme === "light" ? "light" : "dark");
+            localStorage.setItem("colorscheme", theme === "tokyo" ? "dark" : "light");
         } catch (error) {
             document.documentElement.dataset.portfolioTheme = "tokyo";
         }

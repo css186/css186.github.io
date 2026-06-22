@@ -6,8 +6,8 @@
         var allowedThemes = ["tokyo", "light", "cyber"];
         var themeLabels = {
             tokyo: "Tokyo Night",
-            light: "Light",
-            cyber: "Cyber Terminal"
+            light: "Color2",
+            cyber: "Color4"
         };
 
         function normalizeTheme(theme) {
@@ -21,7 +21,7 @@
         }
 
         function syncSystemTheme(theme) {
-            var systemTheme = theme === "light" ? "light" : "dark";
+            var systemTheme = theme === "tokyo" ? "dark" : "light";
             if (typeof setTheme === "function") {
                 setTheme(systemTheme);
                 localStorage.setItem("colorscheme", systemTheme);
@@ -55,3 +55,16 @@
         setPortfolioTheme(localStorage.getItem(storageKey) || document.documentElement.dataset.portfolioTheme || "tokyo");
     })();
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrambleTextPlugin.min.js"></script>
+{{ $timelineJS := resources.Get "js/timeline.js" }}
+{{ if $timelineJS }}
+    {{ if hugo.IsServer }}
+        <script src="{{ $timelineJS.RelPermalink }}"></script>
+    {{ else }}
+        {{ $timelineJS = $timelineJS | minify | fingerprint }}
+        <script src="{{ $timelineJS.RelPermalink }}" integrity="{{ $timelineJS.Data.Integrity }}" crossorigin="anonymous"></script>
+    {{ end }}
+{{ end }}
