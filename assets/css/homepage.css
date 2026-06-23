@@ -512,6 +512,26 @@ html[data-portfolio-theme="light"] .navigation {
     text-decoration: none;
 }
 
+.gsap-ready .button[data-magnetic="true"] {
+    transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    will-change: transform;
+}
+
+.button[data-magnetic="true"] .button-label {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.gsap-ready .button[data-magnetic="true"] .button-label {
+    will-change: transform;
+}
+
+.gsap-ready .button[data-magnetic="true"]:hover,
+.gsap-ready .button[data-magnetic="true"]:focus {
+    transform: none;
+}
+
 .button-primary {
     color: var(--portfolio-button-text) !important;
     background: var(--portfolio-button-bg);

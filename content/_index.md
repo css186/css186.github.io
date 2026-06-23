@@ -9,7 +9,9 @@ description: "Brian Chen's portfolio for backend systems, AI agents, cloud infra
         <h1>Building reliable systems through backend engineering.</h1>
         <p class="hero-subtitle">I build reliable backend services, data-heavy systems, and infrastructure-minded software with a strong foundation in algorithms and system design.</p>
         <div class="hero-actions">
-            <a class="button button-primary" href="/projects/">View Projects</a>
+            <a class="button button-primary" href="/projects/" data-magnetic="true">
+                <span class="button-label">View Projects</span>
+            </a>
             <a class="button button-secondary" href="/about/">About Me</a>
         </div>
         {{< social_links >}}

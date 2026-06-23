@@ -627,6 +627,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         targets = Array.prototype.slice.call(document.querySelectorAll([
+            '.hero-intro',
             '.hero-section h1',
             '.list-hero .title-link',
             '.content article h1 .title-link',
@@ -642,14 +643,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             element.setAttribute('aria-label', finalText);
             gsap.to(element, {
-                duration: 0.9,
-                delay: 0.18 + index * 0.06,
-                scrambleText: {
-                    text: finalText,
-                    chars: 'XO',
-                    revealDelay: 0.18,
-                    speed: 0.3
-                }
+              duration: 0.9,
+              delay: 0.18 + index * 0.06,
+              scrambleText: {
+                text: finalText,
+                chars: "0x3F",
+                revealDelay: 0.18,
+                speed: 0.3,
+              },
             });
         });
     }
@@ -749,6 +750,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         buttonElements.forEach(function (element) {
+            if (element.dataset.magnetic === 'true') {
+                return;
+            }
+
             addListener(element, 'mouseenter', function () {
                 gsap.to(element, {
                     y: -3,
@@ -787,6 +792,74 @@ document.addEventListener('DOMContentLoaded', function () {
                     ease: 'power2.out',
                     clearProps: 'transform'
                 });
+            });
+        });
+    }
+
+    function initMagneticProjectButton(addListener) {
+        var button = document.querySelector('.button[data-magnetic="true"]');
+        var label = button ? button.querySelector('.button-label') : null;
+        var strength = 0.38;
+        var labelStrength = 0.24;
+        var bounds = null;
+
+        if (!button || !label) {
+            return;
+        }
+
+        function updateBounds() {
+            bounds = button.getBoundingClientRect();
+        }
+
+        addListener(button, 'mouseenter', updateBounds);
+
+        addListener(button, 'mousemove', function (event) {
+            var x;
+            var y;
+
+            if (!bounds) {
+                updateBounds();
+            }
+
+            x = gsap.utils.mapRange(bounds.left, bounds.right, -bounds.width / 2, bounds.width / 2, event.clientX);
+            y = gsap.utils.mapRange(bounds.top, bounds.bottom, -bounds.height / 2, bounds.height / 2, event.clientY);
+
+            gsap.to(button, {
+                x: x * strength,
+                y: y * strength,
+                duration: 0.4,
+                ease: 'power2.out',
+                overwrite: true
+            });
+
+            gsap.to(label, {
+                x: x * labelStrength,
+                y: y * labelStrength,
+                duration: 0.4,
+                ease: 'power2.out',
+                overwrite: true
+            });
+        });
+
+        addListener(button, 'mouseleave', function () {
+            bounds = null;
+
+            gsap.to(button, {
+                x: 0,
+                y: 0,
+                duration: 0.7,
+                ease: 'elastic.out(1, 0.4)',
+                overwrite: true,
+                clearProps: 'transform'
+            });
+
+            gsap.to(label, {
+                x: 0,
+                y: 0,
+                duration: 0.7,
+                ease: 'elastic.out(1, 0.4)',
+                overwrite: true,
+                clearProps: 'transform'
             });
         });
     }
@@ -858,6 +931,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initScrollReveals(isDesktop);
         initTimelineLine();
         initHoverInteractions(addListener);
+        initMagneticProjectButton(addListener);
         initThemeToggle(addListener);
 
         if (mobileMenuCleanup) {
