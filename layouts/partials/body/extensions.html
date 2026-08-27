@@ -3,21 +3,14 @@
         var storageKey = "portfolio-theme";
         var toggle = document.getElementById("portfolio-theme-toggle");
         var label = document.querySelector("[data-portfolio-theme-label]");
-        var allowedThemes = ["tokyo", "light", "cyber"];
+        var allowedThemes = ["tokyo", "light"];
         var themeLabels = {
             tokyo: "Tokyo Night",
-            light: "Color2",
-            cyber: "Color4"
+            light: "Color2"
         };
 
         function normalizeTheme(theme) {
-            if (theme === "neo") {
-                return "tokyo";
-            }
-            if (theme === "dark") {
-                return "cyber";
-            }
-            return allowedThemes.indexOf(theme) === -1 ? "tokyo" : theme;
+            return theme === "light" ? "light" : "tokyo";
         }
 
         function syncSystemTheme(theme) {
@@ -67,4 +60,8 @@
         {{ $timelineJS = $timelineJS | minify | fingerprint }}
         <script src="{{ $timelineJS.RelPermalink }}" integrity="{{ $timelineJS.Data.Integrity }}" crossorigin="anonymous"></script>
     {{ end }}
+{{ end }}
+
+{{ if .IsHome }}
+    <script type="module" src="{{ "js/home-scene.js" | relURL }}"></script>
 {{ end }}

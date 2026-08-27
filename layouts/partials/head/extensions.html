@@ -2,7 +2,7 @@
     (function () {
         try {
             var storedTheme = localStorage.getItem("portfolio-theme");
-            var theme = storedTheme === "neo" ? "tokyo" : storedTheme === "dark" ? "cyber" : storedTheme || "tokyo";
+            var theme = storedTheme === "light" ? "light" : "tokyo";
             document.documentElement.dataset.portfolioTheme = theme;
             localStorage.setItem("colorscheme", theme === "tokyo" ? "dark" : "light");
         } catch (error) {
