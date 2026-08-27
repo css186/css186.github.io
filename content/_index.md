@@ -5,16 +5,15 @@ description: "Brian Chen's portfolio for backend systems, AI agents, cloud infra
 
 <div class="hero-section">
     <div class="hero-copy">
-        <p class="hero-intro">Hi, I'm Brian</p>
-        <h1>Building reliable systems through backend engineering.</h1>
-        <p class="hero-subtitle">I build reliable backend services, data-heavy systems, and infrastructure-minded software with a strong foundation in algorithms and system design.</p>
+        <h1>Hi, I'm Brian.</h1>
+        <p class="hero-subtitle">I build reliable backend services and data-intensive systems.</p>
         <div class="hero-actions">
             <a class="button button-primary" href="/projects/" data-magnetic="true">
                 <span class="button-label">View Projects</span>
             </a>
             <a class="button button-secondary" href="/about/">About Me</a>
+            {{< social_links >}}
         </div>
-        {{< social_links >}}
     </div>
     <aside class="hero-card" aria-label="Profile image">
         <img class="hero-avatar" src="/images/website/logo.jpg" alt="Brian Chen">
@@ -22,7 +21,7 @@ description: "Brian Chen's portfolio for backend systems, AI agents, cloud infra
 </div>
 
 <section class="section-block">
-    <div class="section-heading">
+    <div class="section-heading section-heading--center">
         <h2>Engineering strengths</h2>
     </div>
     <div class="expertise-grid">
@@ -60,7 +59,7 @@ description: "Brian Chen's portfolio for backend systems, AI agents, cloud infra
 </section>
 
 <section id="projects" class="section-block">
-    <div class="section-heading">
+    <div class="section-heading section-heading--center">
         <h2>Selective projects</h2>
     </div>
     <div class="project-strip">
@@ -89,8 +88,7 @@ description: "Brian Chen's portfolio for backend systems, AI agents, cloud infra
 
 <section class="section-block timeline-section">
     <div class="section-heading section-heading--center">
-        <span class="eyebrow">Experience</span>
-        <h2>Timeline</h2>
+        <h2>Experience</h2>
     </div>
     <div class="timeline-wrapper">
     <section class="timeline-block">

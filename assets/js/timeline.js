@@ -257,8 +257,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             gsap.to(indicator, {
                 autoAlpha: 1,
-                x: targetRect.left - listRect.left,
-                y: targetRect.top - listRect.top,
+                x: targetRect.left - listRect.left - navList.clientLeft,
+                y: targetRect.top - listRect.top - navList.clientTop,
                 width: targetRect.width,
                 height: targetRect.height,
                 duration: isHover ? 0.5 : 0.62,
@@ -559,7 +559,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function initPageIntro(isDesktop) {
-        var heroWords = document.querySelectorAll('.hero-intro, .hero-section h1, .hero-subtitle, .hero-actions, .social-icons');
+        var heroWords = document.querySelectorAll('.hero-section h1, .hero-subtitle, .hero-actions');
         var heroCard = document.querySelector('.hero-card');
         var listHero = document.querySelector('.list-hero');
         var entryCards = document.querySelectorAll('.portfolio-entry-card');
@@ -627,7 +627,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         targets = Array.prototype.slice.call(document.querySelectorAll([
-            '.hero-intro',
             '.hero-section h1',
             '.list-hero .title-link',
             '.content article h1 .title-link',

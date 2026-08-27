@@ -29,49 +29,55 @@ function initSystemsScene() {
     var nodeGeometry = new THREE.BoxGeometry(0.62, 0.62, 0.62);
     var nodeMaterial = new THREE.MeshBasicMaterial({
         transparent: true,
-        opacity: 0.72
+        opacity: 0.1,
+        polygonOffset: true,
+        polygonOffsetFactor: 1,
+        polygonOffsetUnits: 1
+    });
+    var nodeEdgeTemplate = new THREE.EdgesGeometry(nodeGeometry);
+    var nodeOutlineGeometry = new THREE.BufferGeometry();
+    var nodeOutlineMaterial = new THREE.LineBasicMaterial({
+        transparent: true,
+        opacity: 0.82,
+        depthWrite: false
     });
     var lineGeometry = new THREE.BufferGeometry();
     var lineMaterial = new THREE.LineBasicMaterial({
         transparent: true,
-        opacity: 0.3
+        opacity: 0.3,
+        depthWrite: false
     });
-    var hubGeometry = new THREE.OctahedronGeometry(1.25, 0);
-    var hubMaterial = new THREE.MeshBasicMaterial({
-        wireframe: true,
-        transparent: true,
-        opacity: 0.82
-    });
+    var hubSourceGeometry = new THREE.BoxGeometry(1.12, 1.12, 1.12);
+    var hubGeometry = new THREE.EdgesGeometry(hubSourceGeometry);
+    var nodeThemeColor = new THREE.Color();
+    var hubThemeColor = new THREE.Color();
+
+    hubSourceGeometry.dispose();
+
     var layers = [
         {
-            z: -5,
+            z: -6,
+            x: -0.8,
+            y: 0.8,
+            points: [[0, 0], [-3.8, 2.4], [-3.2, -2.5], [3.4, 2.2], [3.8, -2.3]]
+        },
+        {
+            z: -18,
+            x: 1.4,
+            y: -0.5,
+            points: [[0, 0], [-3.4, 2.6], [-3.8, -2.1], [3.3, 2.5], [3.7, -2.4]]
+        },
+        {
+            z: -30,
             x: -1.2,
-            y: 1.1,
-            points: [[0, 0], [-4.4, 2.5], [-3.8, -2.7], [3.8, 2.4], [4.6, -2.5], [0.4, 4.1], [0.2, -4.2]]
-        },
-        {
-            z: -14,
-            x: 1.8,
-            y: -0.7,
-            points: [[0, 0], [-4.1, 2.9], [-4.8, -1.8], [3.4, 3.3], [4.5, -2.2], [0.1, 4.6], [-0.4, -4.1]]
-        },
-        {
-            z: -23,
-            x: -1.7,
-            y: 0.5,
-            points: [[0, 0], [-4.7, 2.1], [-3.4, -3.2], [4.5, 2.5], [4.1, -3.2], [-0.3, 4.2], [0.7, -4.5]]
-        },
-        {
-            z: -32,
-            x: 1.2,
-            y: -0.9,
-            points: [[0, 0], [-4.2, 3], [-4.5, -2.4], [3.8, 3.1], [4.7, -2.1], [0.5, 4.4], [-0.2, -4.3]]
+            y: 0.3,
+            points: [[0, 0], [-3.7, 2.2], [-3.1, -2.7], [3.6, 2.3], [3.5, -2.5]]
         }
     ];
     var positions = [];
     var layerIndexes = [];
     var edgePairs = [];
-    var localEdges = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [1, 5], [1, 2], [3, 5], [3, 4], [2, 6], [4, 6]];
+    var localEdges = [[0, 1], [0, 2], [0, 3], [0, 4], [1, 3], [3, 4], [4, 2], [2, 1]];
 
     layers.forEach(function (layer, layerIndex) {
         var indexes = [];
@@ -93,31 +99,51 @@ function initSystemsScene() {
             var previous = layerIndexes[layerIndex - 1];
             edgePairs.push([previous[0], indexes[0]]);
             edgePairs.push([previous[3], indexes[1]]);
-            edgePairs.push([previous[4], indexes[2]]);
-            edgePairs.push([previous[1], indexes[3]]);
-            edgePairs.push([previous[2], indexes[4]]);
         }
 
         layerIndexes.push(indexes);
     });
 
-    var nodes = new THREE.InstancedMesh(nodeGeometry, nodeMaterial, positions.length);
+    var satellites = [];
+
+    layerIndexes.forEach(function (indexes) {
+        indexes.slice(1).forEach(function (positionIndex) {
+            satellites.push(positions[positionIndex]);
+        });
+    });
+
+    var nodes = new THREE.InstancedMesh(nodeGeometry, nodeMaterial, satellites.length);
     var matrix = new THREE.Matrix4();
     var quaternion = new THREE.Quaternion();
     var scale = new THREE.Vector3();
+    var edgeVertex = new THREE.Vector3();
+    var nodeEdgePositions = [];
+    var nodeEdgeAttribute = nodeEdgeTemplate.getAttribute('position');
 
-    positions.forEach(function (position, index) {
-        var isHub = index % layers[0].points.length === 0;
-        var nodeScale = isHub ? 1.35 : 0.72 + (index % 4) * 0.09;
+    satellites.forEach(function (satellite, index) {
+        var nodeScale = 0.78 + (index % 3) * 0.08;
 
-        quaternion.setFromEuler(new THREE.Euler(index * 0.21, index * 0.13, index * 0.08));
+        quaternion.setFromEuler(new THREE.Euler(index * 0.17, index * 0.11, index * 0.07));
         scale.setScalar(nodeScale);
-        matrix.compose(position, quaternion, scale);
+        matrix.compose(satellite, quaternion, scale);
         nodes.setMatrixAt(index, matrix);
+
+        for (var edgeIndex = 0; edgeIndex < nodeEdgeAttribute.count; edgeIndex += 1) {
+            edgeVertex.fromBufferAttribute(nodeEdgeAttribute, edgeIndex).applyMatrix4(matrix);
+            nodeEdgePositions.push(edgeVertex.x, edgeVertex.y, edgeVertex.z);
+        }
     });
 
     nodes.instanceMatrix.needsUpdate = true;
     nodes.frustumCulled = false;
+    nodes.renderOrder = 1;
+    nodeEdgeTemplate.dispose();
+    nodeOutlineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(nodeEdgePositions, 3));
+
+    var nodeOutlines = new THREE.LineSegments(nodeOutlineGeometry, nodeOutlineMaterial);
+
+    nodeOutlines.frustumCulled = false;
+    nodeOutlines.renderOrder = 2;
 
     var linePositions = [];
 
@@ -131,15 +157,25 @@ function initSystemsScene() {
     lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
 
     var routes = new THREE.LineSegments(lineGeometry, lineMaterial);
+    var hubMaterials = [];
     var hubs = layers.map(function (layer, index) {
-        var hub = new THREE.Mesh(hubGeometry, hubMaterial);
+        var material = new THREE.LineBasicMaterial({
+            transparent: true,
+            opacity: 0.3,
+            depthWrite: false
+        });
+        var hub = new THREE.LineSegments(hubGeometry, material);
 
         hub.position.copy(positions[layerIndexes[index][0]]);
+        hub.rotation.set(index * 0.12, index * 0.18, index * 0.06);
         hub.userData.phase = index * 0.9;
+        hub.renderOrder = 3;
+        hubMaterials.push(material);
         return hub;
     });
 
-    topology.add(routes, nodes);
+    routes.frustumCulled = false;
+    topology.add(routes, nodes, nodeOutlines);
     hubs.forEach(function (hub) {
         topology.add(hub);
     });
@@ -151,9 +187,14 @@ function initSystemsScene() {
     }
 
     function syncThemeColors() {
-        nodeMaterial.color.set(readThemeColor('--portfolio-teal', '#7dcfff'));
-        lineMaterial.color.set(readThemeColor('--portfolio-blue', '#7aa2f7'));
-        hubMaterial.color.set(readThemeColor('--portfolio-amber', '#e0af68'));
+        nodeThemeColor.set(readThemeColor('--portfolio-blue', '#7aa2f7'));
+        hubThemeColor.set(readThemeColor('--portfolio-amber', '#e0af68'));
+        nodeMaterial.color.copy(nodeThemeColor);
+        nodeOutlineMaterial.color.copy(nodeThemeColor);
+        lineMaterial.color.set(readThemeColor('--portfolio-quiet', '#565f89'));
+        hubMaterials.forEach(function (material) {
+            material.color.copy(nodeThemeColor);
+        });
     }
 
     var targetProgress = 0;
@@ -174,32 +215,37 @@ function initSystemsScene() {
 
     function updateScene(progress, time) {
         var smoothProgress = progress * progress * (3 - 2 * progress);
-        var focusZ = THREE.MathUtils.lerp(-7, -30, smoothProgress);
-        var cameraDistance = isMobile ? 24 : 18;
+        var focusZ = THREE.MathUtils.lerp(layers[0].z, layers[layers.length - 1].z, smoothProgress);
+        var cameraDistance = isMobile ? 25 : 19;
 
         camera.position.set(
-            THREE.MathUtils.lerp(-3.8, 3.4, smoothProgress),
-            THREE.MathUtils.lerp(2.8, -2.2, smoothProgress),
+            THREE.MathUtils.lerp(-6.4, 5.4, smoothProgress),
+            THREE.MathUtils.lerp(4.2, -3.2, smoothProgress),
             focusZ + cameraDistance
         );
         camera.lookAt(
-            THREE.MathUtils.lerp(-0.9, 0.8, smoothProgress),
-            THREE.MathUtils.lerp(0.8, -0.7, smoothProgress),
+            THREE.MathUtils.lerp(-0.6, 0.5, smoothProgress),
+            THREE.MathUtils.lerp(0.6, -0.4, smoothProgress),
             focusZ
         );
-        camera.rotateZ(THREE.MathUtils.lerp(-0.015, 0.018, smoothProgress));
+        camera.rotateZ(THREE.MathUtils.lerp(-0.01, 0.012, smoothProgress));
 
-        topology.rotation.y = smoothProgress * 0.34 + Math.sin(time * 0.16) * 0.018;
-        topology.rotation.x = -0.08 + smoothProgress * 0.15;
-        topology.position.x = Math.sin(smoothProgress * Math.PI * 2) * 0.65;
+        topology.rotation.y = 0.22 + smoothProgress * 0.16 + Math.sin(time * 0.12) * 0.012;
+        topology.rotation.x = -0.12 + smoothProgress * 0.08;
+        topology.position.x = Math.sin(smoothProgress * Math.PI * 2) * 0.3;
+
+        var activeLayer = smoothProgress * (layers.length - 1);
 
         hubs.forEach(function (hub, index) {
             var direction = index % 2 === 0 ? 1 : -1;
-            var pulse = 1 + Math.sin(time * 0.7 + hub.userData.phase) * 0.035;
+            var pulse = 1 + Math.sin(time * 0.55 + hub.userData.phase) * 0.02;
+            var focus = Math.max(0, 1 - Math.abs(activeLayer - index));
 
-            hub.rotation.x = time * 0.12 * direction + smoothProgress * 0.9;
-            hub.rotation.y = time * 0.16 + smoothProgress * 1.2 * direction;
+            hub.rotation.x = index * 0.12 + time * 0.06 * direction + smoothProgress * 0.35;
+            hub.rotation.y = index * 0.18 + time * 0.08 + smoothProgress * 0.45 * direction;
             hub.scale.setScalar(pulse);
+            hub.material.opacity = 0.24 + focus * 0.58;
+            hub.material.color.copy(nodeThemeColor).lerp(hubThemeColor, focus * 0.85);
         });
     }
 
@@ -365,12 +411,16 @@ function initSystemsScene() {
 
         nodeGeometry.dispose();
         nodeMaterial.dispose();
+        nodeOutlineGeometry.dispose();
+        nodeOutlineMaterial.dispose();
         lineGeometry.dispose();
         lineMaterial.dispose();
         hubGeometry.dispose();
-        hubMaterial.dispose();
+        hubMaterials.forEach(function (material) {
+            material.dispose();
+        });
         renderer.dispose();
-    }, { once: true });
+    });
 }
 
 initSystemsScene();
